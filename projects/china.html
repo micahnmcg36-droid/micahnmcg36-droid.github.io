@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Predictive Models for Medicare Claims</title>
+    <title>The China Shock And Commuting Zone Characteristics</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap"
         rel="stylesheet" />
@@ -374,16 +374,15 @@
     <div class="project-hero">
         <div class="hero-inner">
             <a href="../index.html#projects" class="back-link">← Back to Projects</a>
-            <div class="project-domain">Insurance</div>
-            <h1>Predictive Models for Medicare Claims</h1>
+            <div class="project-domain">Economics</div>
+            <h1>The China Shock And Commuting Zone Characteristics</h1>
             <div class="project-stack">
-                <span class="stack-tag">Python</span>
-                <span class="stack-tag">Pandas</span>
-                <span class="stack-tag">scikit-learn</span>
-                <span class="stack-tag">XGBoost</span>
-                <span class="stack-tag">Random Forest</span>
+                <span class="stack-tag">Stata</span>
+                <span class="stack-tag">Panel Data Analysis</span>
+                <span class="stack-tag">Economic Theory</span>
+                <span class="stack-tag">Econometrics</span>
             </div>
-            <a href="https://github.com/micahnmcg36-droid/Actuarial-Projects" class="btn btn-primary" target="_blank">
+            <a href="https://github.com/micahnmcg36-droid/Economics-Projects" class="btn btn-primary" target="_blank">
                 View on GitHub
             </a>
         </div>
@@ -397,51 +396,25 @@
             <div class="section-label">About This Project</div>
             <div class="about-text">
                 <p>
-                    For this project I am using synthetic data from CMS.gov. The purpose is
-                    to model and predict insurance claims and claim amounts based on health factors.
+                    This was my final project from ECON 485 at William & Mary, Globalization and Inequality. 
+                    The entirety of the paper, as well as all references and the Stata Code, can be found in github. 
                 </p>
-                <h3>Data Cleaning</h3>
+                <h3>A Brief Introduction to the Paper</h3>
                 <p>
-                    First, I examined the breakdown of key categorical variables like sex, race, and age.
-                    I then looked at the distribution of the dependent variable. I realized that a few claims were much
-                    bigger than all the others, some were less than 0, but most were 0.
-                    I decided to use the interquartile range to find and remove outliers, and also got rid of negative
-                    claim amounts.
-                    Next, I looked at null values. There was one column (death date) where the vast majority were NA, to
-                    the point where including it in my analysis would just add noise.
-                    I decided to drop that column, and I was done with all of the null values.
-                    Next I wanted to change birth date to age so that I could have a number to include in my regression.
-                    I noticed that all of them were coded to be born on the first of the month, so I just used month and
-                    year.
-                    Next, I went through the categorical columns and removed the ones like county or state code that
-                    would not be useful in my regression.
-                    I also found that some binary columns were coded as {1: Yes, 2: No} as opposed to {1: Yes, 2: No},
-                    so I re-mapped those.
-                    I created dummies where needed and dropped reference categories.
-                    Finally, I noticed that some columns were heavily correlated because of their real-world
-                    interpretation, and dropped one to improve my estimation.
-                </p>
-                <h3>Regression Models</h3>
-                <p>
-                    For the first regression model, I used standard linear regression.
-                    First I used the built-in OLS function from statsmodels to compare against, then I replicated the
-                    results manually using numpy.
-                    This model has an R2 of 0.318. Despite the decent performance, I wouldn't use this if I wanted to
-                    find strictly unbiased coefficient estimates, because of likely endogeneity concerns.
-                    I also used two ML methods, XGBoost and Random Forest to see if I could improve on my OLS estimates.
-                </p>
-                <h3>Classification Models</h3>
-                <p>
-                    I also wanted to see if I could predict whether a person would have a positive claim amount. For
-                    this I used the same XGBoost and Random Forest techniques, this time the classification option, and
-                    standard logistic regression.
-                    I found this time that XGBoost performed the best (based on the AUC score), and I believe that I
-                    could further improve the performance of the ML models with hyperparameter tuning.
+                    One of the most important findings in the last 20 years of research on globalization and inequality is that classical trade theory’s assumption of “perfect labor mobility” is not strongly violated by real world evidence. 
+                    The genesis of this comes from Autor, Dorn, and Hanson’s 2013 paper on distributional consequences of increased manufacturing trade exposure to China.
+                    In the following decade, hundreds of studies have used this framework to examine why trade affects some places more than others, contradicting years of established economic thought. 
+                    The “China shock”, a period in American trade history following China’s ascension to the World Trade Organization (WTO), provides a useful setting to study trade and inequality. 
+                    Beyond the trade literature, there is also significant work in the field of labor economics which studies how and why people move to new jobs. 
+                    This paper seeks to study the impact of local labor market characteristics on worker mobility, building upon established work on the effects of demographics and industrial composition (eg. Autor et al., 2021; Greenland et al. 2019).
+                    Using data from Autor, Dorn, and Hanson and a metric for the concentration of large labor markets nearby, I study migration responses to the China shock over the period of 1990-2007 at the commuting zone level to see if and why some regions react differently. 
+                    This paper seeks to add to the understanding of differential labor market responses to trade shocks and help further explain the intensity and longevity of its negative effects.
                 </p>
                 <h3>Data Source:</h3>
                 <p>
-                    The data I used can be found <a
-                        href="https://www.cms.gov/data-research/statistics-trends-and-reports/medicare-claims-synthetic-public-use-files/cms-2008-2010-data-entrepreneurs-synthetic-public-use-file-de-synpuf"
+                    I used public data from David Dorn, which can be found on his website
+                    <a
+                        href="https://www.ddorn.net/data.htm"
                         target="_blank">here.</a>
 
                 </p>
@@ -452,18 +425,18 @@
         <div class="screenshots-col">
 
             <div class="picture-card">
-                <img src="img/histmedic.png" alt="Histogram of Medicare Claims" />
-                <div class="picture-caption">Histogram of Medicare Claims</div>
+                <img src="img/equation.png" alt="Equations" />
+                <div class="picture-caption">Equations for the Theoretical Model</div>
             </div>
 
             <div class="picture-card">
-                <img src="img/OLS_Output.png" alt="OLS Output" />
-                <div class="picture-caption">OLS Output</div>
+                <img src="img/targetvar.png" alt="Histogram for Target Variable" />
+                <div class="picture-caption">Histogram for Target Variable</div>
             </div>
 
             <div class="picture-card">
-                <img src="img/RocAuc.png" alt="ROC-AUC graph" />
-                <div class="picture-caption">ROC-AUC</div>
+                <img src="img/regoutput.png" alt="Regression Output" />
+                <div class="picture-caption">Regression Output</div>
             </div>
 
 
