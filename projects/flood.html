@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Predictive Models for Medicare Claims</title>
+    <title>Forecasting Flood Damages</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap"
         rel="stylesheet" />
@@ -375,13 +375,11 @@
         <div class="hero-inner">
             <a href="../index.html#projects" class="back-link">← Back to Projects</a>
             <div class="project-domain">Insurance</div>
-            <h1>Predictive Models for Medicare Claims</h1>
+            <h1>Forecasting Flood Damages</h1>
             <div class="project-stack">
                 <span class="stack-tag">Python</span>
-                <span class="stack-tag">Pandas</span>
-                <span class="stack-tag">scikit-learn</span>
-                <span class="stack-tag">XGBoost</span>
-                <span class="stack-tag">Random Forest</span>
+                <span class="stack-tag">ARIMA Forecasting</span>
+                <span class="stack-tag">SVR</span>
             </div>
             <a href="https://github.com/micahnmcg36-droid/Actuarial-Projects" class="btn btn-primary" target="_blank">
                 View on GitHub
@@ -397,71 +395,61 @@
             <div class="section-label">About This Project</div>
             <div class="about-text">
                 <p>
-                    For this project I am using synthetic data from CMS.gov. The purpose is
-                    to model and predict insurance claims and claim amounts based on health factors.
+                    For this project, I used data from FEMA.gov.
+                    I wanted to use various time-series methods to forecast future flood insurance damages.
                 </p>
-                <h3>Data Cleaning</h3>
+                <h3>Data Cleaning, Transformation, and Stationarity Testing</h3>
                 <p>
-                    First, I examined the breakdown of key categorical variables like sex, race, and age.
-                    I then looked at the distribution of the dependent variable. I realized that a few claims were much
-                    bigger than all the others, some were less than 0, but most were 0.
-                    I decided to use the interquartile range to find and remove outliers, and also got rid of negative
-                    claim amounts.
-                    Next, I looked at null values. There was one column (death date) where the vast majority were NA, to
-                    the point where including it in my analysis would just add noise.
-                    I decided to drop that column, and I was done with all of the null values.
-                    Next I wanted to change birth date to age so that I could have a number to include in my regression.
-                    I noticed that all of them were coded to be born on the first of the month, so I just used month and
-                    year.
-                    Next, I went through the categorical columns and removed the ones like county or state code that
-                    would not be useful in my regression.
-                    I also found that some binary columns were coded as {1: Yes, 2: No} as opposed to {1: Yes, 2: No},
-                    so I re-mapped those.
-                    I created dummies where needed and dropped reference categories.
-                    Finally, I noticed that some columns were heavily correlated because of their real-world
-                    interpretation, and dropped one to improve my estimation.
+                    First, I removed everything except for the dates and claim amounts. 
+                    I made sure there were no missing values. 
+                    I also made sure to format the dates in the Pandas DateTime format. 
+                    Next I looked at the data, and I noticed that it would probably be best to take the logarithm of the dependent variable (which requires removing dates with 0 claims). 
+                    I then did a stationarity test (Augmented Dickey Fuller), and found that the series was stationary, and I could begin my analysis.
+
                 </p>
-                <h3>Regression Models</h3>
+                <h3>ARIMA and SARIMA</h3>
                 <p>
-                    For the first regression model, I used standard linear regression.
-                    First I used the built-in OLS function from statsmodels to compare against, then I replicated the
-                    results manually using numpy.
-                    This model has an R2 of 0.318. Despite the decent performance, I wouldn't use this if I wanted to
-                    find strictly unbiased coefficient estimates, because of likely endogeneity concerns.
-                    I also used two ML methods, XGBoost and Random Forest to see if I could improve on my OLS estimates.
+                    Plotting the Autocorrelations and Partial Autocorrelations, I decided to begin with an ARMA(2,1) model. 
+                    The model had decent performance (MAPE of 8.06%), but I thought I could better forecast the data using a seasonal term, as one would expect flood damages to have a seasonality component. 
+                    From there I used a Seasonal ARIMA model with the same values for p and q, and found slightly improved performance. 
+                    When I looked at it though, I thought that I could do even slightly better by taking into account the spikes (for this, I used an indicator for the 95th percentile). 
+                    This performed the best of the three in terms of MAPE.
+
                 </p>
-                <h3>Classification Models</h3>
+                <h3>SVR</h3>
                 <p>
-                    I also wanted to see if I could predict whether a person would have a positive claim amount. For
-                    this I used the same XGBoost and Random Forest techniques, this time the classification option, and
-                    standard logistic regression.
-                    I found this time that XGBoost performed the best (based on the AUC score), and I believe that I
-                    could further improve the performance of the ML models with hyperparameter tuning.
+                    Finally, I used SVR (Support Vector Regression) to see if I could improve performance futher with ML techniques. 
+                    I found that the version I ran performed worse than the classical time series methods, 
+                    but I suspect I could improve it by further tuning hyperparameters and including more variables.
                 </p>
                 <h3>Data Source:</h3>
                 <p>
-                    The data I used can be found <a href="https://www.cms.gov/data-research/statistics-trends-and-reports/medicare-claims-synthetic-public-use-files/cms-2008-2010-data-entrepreneurs-synthetic-public-use-file-de-synpuf" target = "_blank">here.</a>
+                    The data I used can be found <a href="https://www.fema.gov/openfema-data-page/fima-nfip-redacted-claims-v2" target = "_blank">here.</a>
 
                 </p>
-
+                
             </div>
         </div>
 
         <div class="screenshots-col">
 
             <div class="picture-card">
-                <img src="img/RocAuc.png" alt="ROC-AUC graph" />
-                <div class="picture-caption">ROC-AUC</div>
+                <img src="img/TimeSeries.png" alt="Flood damages across the time window" />
+                <div class="picture-caption">Flood Damages Over Time</div>
             </div>
 
             <div class="picture-card">
-                <img src="img/histmedic.png" alt="Histogram of Medicare Claims" />
-                <div class="picture-caption">Histogram of Medicare Claims</div>
+                <img src="img/ACF_PACF.png" alt="ACF and PACF" />
+                <div class="picture-caption">Autocorrelation and Partial Autocorrelation</div>
             </div>
 
             <div class="picture-card">
-                <img src="img/OLS_Output.png" alt="OLS Output" />
-                <div class="picture-caption">OLS Output</div>
+                <img src="img/Best_TS_Forecast.png" alt="SARIMA Forecast" />
+                <div class="picture-caption">SARIMA Forecast: The best so far</div>
+            </div>
+            <div class="picture-card">
+                <img src="img/SVR_Forecast.png" alt="SVR Forecast" />
+                <div class="picture-caption">Forecasting with SVR</div>
             </div>
 
 
