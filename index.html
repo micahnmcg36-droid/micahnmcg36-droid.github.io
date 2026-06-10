@@ -1,0 +1,685 @@
+<html lang="en">
+
+<head>
+    <title>Micah Neff-McGready</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --navy: #0D1B2A;
+            --navy-mid: #162235;
+            --steel: #2C3E55;
+            --gold: #C9A84C;
+            --gold-lt: #E2C97E;
+            --off-white: #F0EDE6;
+            --muted: #8A99AA;
+            --text: #D8E0E8;
+            --card-bg: #111E2D;
+            --border: rgba(201, 168, 76, 0.18);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--navy);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Navigation Buttons */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.1rem 4rem;
+            background: rgba(13, 27, 42, 0.92);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--gold);
+            letter-spacing: 0.03em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        /*  Hero Image */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 4rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 55%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 40%, rgba(201, 168, 76, 0.04) 100%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 680px;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            display: inline-block;
+            width: 32px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.8rem, 6vw, 4.4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--off-white);
+            margin-bottom: 1.4rem;
+            letter-spacing: -0.01em;
+        }
+
+        h1 span {
+            color: var(--gold);
+        }
+
+        .hero-bio {
+            font-size: 1.05rem;
+            font-weight: 300;
+            color: var(--muted);
+            max-width: 520px;
+            margin-bottom: 2.4rem;
+            line-height: 1.75;
+        }
+
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 2.8rem;
+        }
+
+        .tag {
+            padding: 0.35rem 0.9rem;
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--gold-lt);
+            letter-spacing: 0.05em;
+            background: rgba(201, 168, 76, 0.05);
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.8rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 2px;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--navy);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-lt);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+        }
+
+        .btn-outline:hover {
+            background: rgba(201, 168, 76, 0.08);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 4rem;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .section-label::before {
+            content: '';
+            display: inline-block;
+            width: 24px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            color: var(--off-white);
+            margin-bottom: 3rem;
+            font-weight: 600;
+        }
+
+        /* Skills */
+        .skills-section {
+            background: var(--navy-mid);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            padding: 1.6rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 2px;
+        }
+
+        .skill-card-title {
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.9rem;
+        }
+
+        .skill-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .skill-list li {
+            font-size: 0.88rem;
+            color: var(--muted);
+            font-weight: 400;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .project-card:last-child:nth-child(odd) {
+            grid-column: 1 / 2;
+        }
+
+        .project-card {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            padding: 2rem;
+            transition: border-color 0.2s, transform 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 0;
+            background: var(--gold);
+            transition: height 0.3s ease;
+        }
+
+        .project-card:hover {
+            border-color: rgba(201, 168, 76, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .project-card:hover::before {
+            height: 100%;
+        }
+
+        .project-domain {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.7rem;
+        }
+
+        .project-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            color: var(--off-white);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .project-desc {
+            font-size: 0.88rem;
+            color: var(--muted);
+            line-height: 1.7;
+            margin-bottom: 1.4rem;
+        }
+
+        .project-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1.6rem;
+        }
+
+        .stack-tag {
+            font-size: 0.72rem;
+            font-weight: 500;
+            padding: 0.2rem 0.6rem;
+            background: rgba(201, 168, 76, 0.07);
+            border: 1px solid rgba(201, 168, 76, 0.15);
+            border-radius: 2px;
+            color: var(--muted);
+            letter-spacing: 0.04em;
+        }
+
+        .project-link {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--gold);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: gap 0.2s;
+        }
+
+        .project-link:hover {
+            gap: 0.7rem;
+        }
+
+        /* Contact */
+        .contact-section {
+            background: var(--navy-mid);
+        }
+
+        .contact-inner {
+            max-width: 560px;
+        }
+
+        .contact-desc {
+            font-size: 1rem;
+            color: var(--muted);
+            margin-bottom: 2rem;
+            line-height: 1.75;
+            font-weight: 300;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.8rem 1.4rem;
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            text-decoration: none;
+            color: var(--text);
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: border-color 0.2s, color 0.2s;
+            background: var(--card-bg);
+        }
+
+        .contact-item:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 4rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-name {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold);
+            font-size: 0.95rem;
+        }
+
+        .footer-note {
+            font-size: 0.78rem;
+            color: var(--muted);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1.2rem;
+            }
+
+            .hero,
+            section,
+            footer {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+
+            .hero {
+                padding-top: 7rem;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav>
+        <span class="nav-name">Micah Neff-McGready</span>
+        <ul class="nav-links">
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!--Hero-->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-eyebrow">Data Analyst</div>
+            <h1>Micah<br><span>Neff-McGready</span></h1>
+            <p class="hero-bio">
+                I have a BA in Economics from William & Mary. I primarily use Python, and my interests are insurance,
+                finance, and business analytics.
+                On this site you will find some of my projects, with links to all datasets and source code.
+            </p>
+            <div class="hero-tags">
+                <span class="tag">Python</span>
+                <span class="tag">R</span>
+                <span class="tag">Power BI</span>
+                <span class="tag">Statistics</span>
+            </div>
+            <div class="hero-cta">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!--Skills-->
+    <section class="skills-section" id="skills">
+        <h2>Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-card-title">Languages and Software</div>
+                <ul class="skill-list">
+                    <li>Python</li>
+                    <li>R</li>
+                    <li>SQL</li>
+                    <li>Stata</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <div class="skill-card-title">Statistics & ML</div>
+                <ul class="skill-list">
+                    <li>Predictive Modeling</li>
+                    <li>Regression and Forecasting</li>
+                    <li>Econometrics</li>
+                    <li>Time Series Analysis</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <div class="skill-card-title">Visualization</div>
+                <ul class="skill-list">
+                    <li>Power BI</li>
+                    <li>Tableau</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <div class="skill-card-title">Domain Focus</div>
+                <ul class="skill-list">
+                    <li>Actuarial Modeling</li>
+                    <li>Financial Analysis</li>
+                    <li>Business Intelligence</li>
+                    <li>Economic Modeling</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <!--Projects-->
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+
+            <div class="project-card">
+                <div class="project-domain">Business Analytics</div>
+                <div class="project-title">Restaurant Chain Financial Analysis</div>
+                <p class="project-desc">
+                    I randomly generated data (customers, menu, locations, etc...) for a fictional fast food restaurant
+                    and built visuals and dashboards in Power BI to analyze trends and uncover insights.
+                </p>
+                <div class="project-stack">
+                    <span class="stack-tag">Python</span>
+                    <span class="stack-tag">Power BI</span>
+                    <span class="stack-tag">DAX</span>
+                </div>
+                <a href="https://github.com/micahnmcg36-droid/Restaurant-Business" class="project-link"
+                    target="_blank">View on GitHub →</a>
+            </div>
+
+            <div class="project-card">
+                <div class="project-domain">Insurance</div>
+                <div class="project-title">Predictive Models for Medicare Claims</div>
+                <p class="project-desc">
+                    I used various regression techniques to model claim frequency and amounts for medicare patients. The
+                    data came from CMS.gov.
+                </p>
+                <div class="project-stack">
+                    <span class="stack-tag">Python</span>
+                    <span class="stack-tag">pandas</span>
+                    <span class="stack-tag">scikit-learn</span>
+                    <span class="stack-tag">XGBoost</span>
+                    <span class="stack-tag">RandomForest</span>
+                </div>
+                <a href="https://github.com/micahnmcg36-droid/Actuarial-Projects" class="project-link"
+                    target="_blank">View on GitHub →</a>
+            </div>
+
+            <div class="project-card">
+                <div class="project-domain">Insurance</div>
+                <div class="project-title">Forecasting Flood Damages</div>
+                <p class="project-desc">
+                    I used various time series forecasting techniques, including ARIMA, SARIMA, and SVR, to predict
+                    flood insurance damages. The data came from FEMA.gov.
+                </p>
+                <div class="project-stack">
+                    <span class="stack-tag">Python</span>
+                    <span class="stack-tag">ARIMA Forecasting</span>
+                    <span class="stack-tag">SVR</span>
+                </div>
+                <a href="https://github.com/micahnmcg36-droid/Actuarial-Projects" class="project-link"
+                    target="_blank">View on GitHub →</a>
+            </div>
+
+            <div class="project-card">
+                <div class="project-domain">Machine Learning</div>
+                <div class="project-title">Bank Data Binary Classification</div>
+                <p class="project-desc">
+                    Predicted whether customers would subscribe to a bank term deposit. I built this project in both R
+                    and Python. Based on https://www.kaggle.com/competitions/playground-series-s5e8/overview.
+                </p>
+                <div class="project-stack">
+                    <span class="stack-tag">Python</span>
+                    <span class="stack-tag">R</span>
+                    <span class="stack-tag">Random Forest</span>
+                    <span class="stack-tag">Classification</span>
+                </div>
+                <a href="https://github.com/micahnmcg36-droid/Bank-Data/blob/main/Bank_Data.ipynb" class="project-link"
+                    target="_blank">View on GitHub →</a>
+            </div>
+
+
+            <div class="project-card">
+                <div class="project-domain">Economics</div>
+                <div class="project-title">The China Shock And Commuting Zone Characteristics</div>
+                <p class="project-desc">
+                    Using data from Autor, Dorn, and Hanson and a metric for the concentration of large labor markets
+                    nearby, I study migration responses to the China shock over the period of 1990-2007 at the commuting
+                    zone level to see if and why some regions react differently.
+                </p>
+                <div class="project-stack">
+                    <span class="stack-tag">Stata</span>
+                    <span class="stack-tag">Panel Data Analysis</span>
+                    <span class="stack-tag">Economic Theory</span>
+                    <span class="stack-tag">Econometrics</span>
+                </div>
+                <a href="https://github.com/micahnmcg36-droid/Economics-Projects" class="project-link"
+                    target="_blank">View
+                    on GitHub →</a>
+            </div>
+        </div>
+
+    </section>
+
+    <!--Contact-->
+
+    <section class="contact-section" id="contact">
+        <div class="contact-inner">
+            <h2>Contact</h2>
+            <div class="contact-links">
+                <a href="mailto:micahnmcg36@gmail.com" class="contact-item">
+                     Email
+                </a>
+                <a href="https://github.com/micahnmcg36-droid" class="contact-item" target="_blank">
+                     GitHub
+                </a>
+                <a href ="https://www.linkedin.com/in/micah-mcg/" class="contact-item" target="_blank">
+                    Linkedin
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!--Footer-->
+    <footer>
+        <span class="footer-name">Micah Neff-McGready</span>
+    </footer>
+
+</body>
+
+</html>
+
+
+
+
+
+</body>
+
+</html>
