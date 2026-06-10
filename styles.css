@@ -1,0 +1,167 @@
+h1 {
+    text-align: center;
+    color: indigo;
+}
+
+#banner {width: 100%;}
+
+.location {color: gray;}
+
+#jobs-table {
+    width: 100%;
+    border: 1px solid grey;
+    border-collapse:collapse;
+}
+
+#jobs-table th {
+    border: 1px solid grey;
+    padding: 4px 8px;
+    text-align: left;
+    background-color: aliceblue;
+}
+
+#jobs-table td {
+    border-right: 1px solid grey;
+    padding: 4px 8px;
+}
+
+#jobs-table tr:nth-child(odd) {
+    background-color: ghostwhite;
+}
+
+#jobs-table td {
+    border-right: 1px solid grey;
+    padding: 8px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Inter;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Inter;
+    font-weight: 500;
+}
+
+h1 {font-size: 2.5 rem;}
+h2 {font-size: 2 rem;}
+h3 {font-size: 1.75 rem;}
+h4 {font-size: 1.5 rem;}
+h5 {font-size: 1.25 rem;}
+h6 {font-size: 1 rem;}
+
+#description {
+    width: 50%;
+    padding-right: 8px;
+    font-size: 1.25rem;
+}
+
+p {
+    color: red;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #444444;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Inter;
+    font-weight: 500;
+    color: #222222;
+}
+
+#jobs-table th {
+    border: 1px solid grey;
+    padding: 8px;
+    text-align: center;
+    background-color: #BFDBFE;
+    font-weight: 500;
+    color: #222222
+}
+
+#jobs-table th {
+    border: 1px solid grey;
+    padding: 8px;
+    text-align: center;
+    baackground-color: #BFDBFE;
+    font-weight: 500;
+    color: #222222;
+}
+
+#jobs-table tr:nth child(odd) {
+    background-color: #EFF6FF;
+}
+
+#footer {
+    background-color: #FAFAFA;
+    padding: 8px;
+    margin-top: 32px;
+    text-align: center;
+}
+
+### Styling the Form
+
+We can style the above form using the following CSS properties:
+
+```css
+
+#application {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 8px;
+}
+
+.form-group {
+  margin: 16px 0;
+}
+
+.form-group input, textarea, select{
+ font-size:1.25rem;
+ border-radius: 4px;
+ border: 1px solid gray;
+ margin-top: 4px;
+ padding: 8px;
+ min-width: 360px;
+}
+
+.form-group textarea{
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+}
+
+.form-group input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  min-width: 0;
+}
+
+#application-form label {
+  font-weight: bold;
+}
+
+#application-form input[type="submit"] {
+  background-color: #2563EB;
+  width: 120px;
+  min-width: 0;
+  padding: 16px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.25rem;
+}

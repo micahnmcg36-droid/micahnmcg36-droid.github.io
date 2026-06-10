@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Title — Micah Neff-McGready</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:      #0D1B2A;
+      --navy-mid:  #162235;
+      --steel:     #2C3E55;
+      --gold:      #C9A84C;
+      --gold-lt:   #E2C97E;
+      --off-white: #F0EDE6;
+      --muted:     #8A99AA;
+      --text:      #D8E0E8;
+      --card-bg:   #111E2D;
+      --border:    rgba(201,168,76,0.18);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--navy);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.1rem 4rem;
+      background: rgba(13,27,42,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--gold);
+      letter-spacing: 0.03em;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    .project-hero {
+      padding: 9rem 4rem 4rem;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .project-hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 760px; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 1.8rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--gold); }
+    .project-domain {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .project-domain::before {
+      content: '';
+      display: inline-block;
+      width: 24px; height: 1px;
+      background: var(--gold);
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--off-white);
+      line-height: 1.15;
+      margin-bottom: 1.4rem;
+      font-weight: 700;
+    }
+    .project-stack {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .stack-tag {
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 0.25rem 0.7rem;
+      background: rgba(201,168,76,0.07);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 2px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+    .btn {
+      padding: 0.75rem 1.8rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.2s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .btn-primary { background: var(--gold); color: var(--navy); }
+    .btn-primary:hover { background: var(--gold-lt); }
+
+    /* ── CONTENT ── */
+    .content { max-width: 860px; margin: 0 auto; padding: 4rem; }
+
+    /* About */
+    .about-section { margin-bottom: 4rem; }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 24px; height: 1px;
+      background: var(--gold);
+    }
+    .about-text {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.85;
+      font-weight: 300;
+    }
+    .about-text p + p { margin-top: 1rem; }
+
+    /* Pictures */
+    .pictures-section { margin-bottom: 4rem; }
+    .pictures-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+    }
+    .picture-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .picture-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+    .picture-caption {
+      padding: 0.8rem 1rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 400;
+      border-top: 1px solid var(--border);
+    }
+
+    /* GitHub CTA */
+    .github-section {
+      padding: 2.5rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1.5rem;
+    }
+    .github-text h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--off-white);
+      margin-bottom: 0.3rem;
+    }
+    .github-text p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    /* Footer */
+    footer {
+      padding: 2rem 4rem;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+      margin-top: 2rem;
+    }
+    .footer-name {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      font-size: 0.95rem;
+    }
+    .footer-note { font-size: 0.78rem; color: var(--muted); }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .project-hero, .content, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .pictures-grid { grid-template-columns: 1fr; }
+      .github-section { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="../index.html" class="nav-name">Micah Neff-McGready</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+      <li><a href="../resume.pdf" target="_blank">Resume</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="project-hero">
+    <div class="hero-inner">
+      <a href="../index.html#projects" class="back-link">← Back to Projects</a>
+      <div class="project-domain">Domain — e.g. Business Analytics</div>
+      <h1>Project Title Goes Here</h1>
+      <div class="project-stack">
+        <span class="stack-tag">Tool 1</span>
+        <span class="stack-tag">Tool 2</span>
+        <span class="stack-tag">Tool 3</span>
+      </div>
+      <a href="https://github.com/micahnmcg36-droid/your-repo" class="btn btn-primary" target="_blank">
+        View on GitHub →
+      </a>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- ABOUT -->
+    <div class="about-section">
+      <div class="section-label">About</div>
+      <div class="about-text">
+        <p>
+          Write your project description here. Explain what question you were trying to answer,
+          where the data came from, and what approach you took.
+        </p>
+        <p>
+          Add a second paragraph if needed — methodology, key decisions, or anything
+          interesting about the analysis.
+        </p>
+      </div>
+    </div>
+
+    <!-- PICTURES -->
+    <div class="pictures-section">
+      <div class="section-label">Visuals</div>
+      <div class="pictures-grid">
+
+        <div class="picture-card">
+          <img src="img/screenshot-1.png" alt="Description of visual 1" />
+          <div class="picture-caption">Caption for this visual</div>
+        </div>
+
+        <div class="picture-card">
+          <img src="img/screenshot-2.png" alt="Description of visual 2" />
+          <div class="picture-caption">Caption for this visual</div>
+        </div>
+
+        <div class="picture-card">
+          <img src="img/screenshot-3.png" alt="Description of visual 3" />
+          <div class="picture-caption">Caption for this visual</div>
+        </div>
+
+        <div class="picture-card">
+          <img src="img/screenshot-4.png" alt="Description of visual 4" />
+          <div class="picture-caption">Caption for this visual</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- GITHUB -->
+    <div class="github-section">
+      <div class="github-text">
+        <h3>View the Full Code</h3>
+        <p>Notebooks, scripts, and data on GitHub.</p>
+      </div>
+      <a href="https://github.com/micahnmcg36-droid/your-repo" class="btn btn-primary" target="_blank">
+        Open Repository →
+      </a>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-name">Micah Neff-McGready</span>
+    <span class="footer-note">Economics · William & Mary · 2025</span>
+  </footer>
+
+</body>
+</html>
