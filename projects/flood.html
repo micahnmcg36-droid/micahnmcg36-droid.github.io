@@ -395,35 +395,34 @@
             <div class="section-label">About This Project</div>
             <div class="about-text">
                 <p>
+                <h1>Introduction</h1>
                     For this project, I used data from FEMA.gov.
-                    I wanted to use various time-series methods to forecast future flood insurance damages.
-                </p>
-                <h3>Data Cleaning, Transformation, and Stationarity Testing</h3>
-                <p>
+                    I wanted to use various time-series methods to forecast future flood insurance damages.  
+                <br><br>
+                <h1>Part I: Data Cleaning, Transformation, and Stationarity Testing</h1>
                     First, I removed everything except for the dates and claim amounts. 
                     I made sure there were no missing values. 
+                    <br><br>
                     I also made sure to format the dates in the Pandas DateTime format. 
                     Next I looked at the data, and I noticed that it would probably be best to take the logarithm of the dependent variable (which requires removing dates with 0 claims). 
-                    I then did a stationarity test (Augmented Dickey Fuller), and found that the series was stationary, and I could begin my analysis.
-
-                </p>
-                <h3>ARIMA and SARIMA</h3>
-                <p>
+                    <br><br>
+                    I then performed a stationarity test (Augmented Dickey Fuller), and found that the series was stationary, and I could begin my analysis.
+                    <br><br>
+                <h1>Part II: ARIMA and SARIMA</h1>
                     Plotting the Autocorrelations and Partial Autocorrelations, I decided to begin with an ARMA(2,1) model. 
-                    The model had decent performance (MAPE of 8.06%), but I thought I could better forecast the data using a seasonal term, as one would expect flood damages to have a seasonality component. 
+                    The model had decent performance (MAPE of 8.06%), but I thought I could better forecast the data using a seasonal term, as one would expect flooding to have a seasonality component. 
+                    <br><br>
                     From there I used a Seasonal ARIMA model with the same values for p and q, and found slightly improved performance. 
                     When I looked at it though, I thought that I could do even slightly better by taking into account the spikes (for this, I used an indicator for the 95th percentile). 
+                    <br><br>
                     This performed the best of the three in terms of MAPE.
-
-                </p>
-                <h3>SVR</h3>
-                <p>
+                    <br><br>
+                <h1>Part III: SVR</h1>
                     Finally, I used SVR (Support Vector Regression) to see if I could improve performance futher with ML techniques. 
                     I found that the version I ran performed worse than the classical time series methods, 
                     but I suspect I could improve it by further tuning hyperparameters and including more variables.
-                </p>
-                <h3>Data Source:</h3>
-                <p>
+                    <br><br>
+                <h1>Data Source:</h1>
                     The data I used can be found <a href="https://www.fema.gov/openfema-data-page/fima-nfip-redacted-claims-v2" target = "_blank">here.</a>
 
                 </p>
